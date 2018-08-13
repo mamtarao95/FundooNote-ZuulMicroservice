@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: zuul-service
+
+server:
+  port: 8050
+
+eureka:
+  client: 
+    service-url.defaultZone: http://localhost:8761/eureka
+  
+#zuul.ignored-services=*
+zuul:
+  routes:
+    note: 
+      path: /note/**
+      serviceId: note-microservice
+    label: 
+      path: /label/**
+      serviceId: note-microservice
+    user: 
+      path: /user/**
+      serviceId: user-microservice
+# Increase the Hystrix timeout to 60s (globally)
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 600000
+
+key: mamta
+
+
+
